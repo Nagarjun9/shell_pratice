@@ -5,4 +5,4 @@ NO2=$2
 
 SUM=$(($NO1+$NO2))
 
-echo "Total os $NO1 and $NO2 is: $SUM" 
+echo "Total is $NO1 and $NO2 is: $SUM" 
