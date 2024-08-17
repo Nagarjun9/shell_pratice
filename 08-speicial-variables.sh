@@ -1,3 +1,3 @@
 #!/bin/bash 
 
-echo "ALL Variable" $@"
+echo "ALL Variable: $@"
