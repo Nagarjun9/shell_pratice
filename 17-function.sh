@@ -9,5 +9,5 @@ VALIDATION(){
 }
 
 
-dbf install nginx -y 
+dnf install nginx -y 
 VALIDATION $? "installation of nginx"
