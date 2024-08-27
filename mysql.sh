@@ -47,6 +47,4 @@ VALIDATE $? "Enableing MySQL server"
 systemctl start mysqlid &>>$LOGFILE 
 VALIDATE $? "starting MySQL Server" 
 
-mysql -h db.daws78s.online -uroot -p${mysql_root_password} -e 'show databases;' &>>$LOGFILE 
-
-    
+mysql -h db.daws78s.cloud -uroot -p${mysql_root_password} -e 'show databases;' &>>$LOGFILE 
