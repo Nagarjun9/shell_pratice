@@ -35,7 +35,7 @@ VALIDATE $? "Disabling nodejs:20 version"
 dnf module enable nodejs:20 -y &>>$LOGFILE 
 VALIDATE $? "Enabling nodejs:20 version" 
 
-dnf install nodejs -y $>>$LOGFILE 
+dnf install nodejs -y &>>$LOGFILE 
 VALIDATE $? "Installing nodejs" 
 
 id expense &>>$LOGFILE 
@@ -77,7 +77,7 @@ VALIDATE $? "Enabling backend"
 dnf install mysql -y &>>$LOGFILE 
 VALIDATE $? "Installing MySQL Client" 
 
-mysql -h db.daws78s.online -uroot -p${mysql_root_password} < /app/schema/backend.sql &>>$LOGFILE
+mysql -h db.daws78s.cloud -uroot -p${mysql_root_password} < /app/schema/backend.sql &>>$LOGFILE
 VALIDATE $? "Schema loading" 
 
 systemctl restart backend &>>$LOGFILE 
