@@ -8,8 +8,8 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33"
 N="\e[0m"
-echo "Please enter DB password:"
-read -s mysql_root_password 
+# echo "Please enter DB password:"
+# read -s mysql_root_password 
 
 # VALIDATE(){
 #     if [ $1 -ne 0 ]
@@ -47,5 +47,5 @@ VALIDATE $? "Enableing MySQL server"
 systemctl start mysqlid &>>$LOGFILE 
 VALIDATE $? "starting MySQL Server" 
 
-mysql_secure_installation --set-root-pass ${mysql_root_password} &>>$LOGFILE
+mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
 VALIDATION $? "setup the root password"
