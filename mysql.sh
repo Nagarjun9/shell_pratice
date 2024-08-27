@@ -1,51 +1,46 @@
 #!/bin/bash
 
 USERID=$(id -u)
-TIMESTAMP=$(date +%F-%H-%M-%S)
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
-LOGFILE=/tmp/$SCRIPT_NAME-$TIMESTAMP.log 
+TIMESTAMP=$(date +%F-%H-%M-%s)
+LOGFILE=/tmp/$SCRIPT_NAME-$TIMESTAMP.log
 R="\e[31m"
 G="\e[32m"
-Y="\e[33"
+Y="\e[33m"
+B="\e[34m"
+P="\e[35m"
 N="\e[0m"
-# echo "Please enter DB password:"
-# read -s mysql_root_password 
 
-# VALIDATE(){
-#     if [ $1 -ne 0 ]
-#     then 
-#         echo -e "$2...$R FAILURE $N"
-#         exit 1 
-#     else 
-#         echo -e "$2...$G SUCCESS $N"
-# }
+echo "please enter password"
+read "my_root_passowrd"
 
-VALIDATE(){
-   if [ $1 -ne 0 ]
-   then
-        echo -e "$2...$R FAILURE $N"
+VALIDATION(){
+    if [ $1 -ne 0 ]
+    then 
+        echo -e "$R $2...failed $N"
         exit 1
-    else
-        echo -e "$2...$G SUCCESS $N"
-    fi
+    else 
+        echo -e "$G $2...success $N"
+    fi 
 }
 
 if [ $USERID -ne 0 ]
 then 
-    echo "Please run this script with root access."
+    echo -e "$Y you are not a superuser please user sudo $N "
     exit 1
-else 
-    echo "you are super user"
-if 
+else
+     echo -e "$B you are a super user $N"
+fi
 
-dnf install mysql-serer -y &>>$LOGFILE 
-VALIDATE $? "installing MySQL server" 
+dnf install mysql-server -y &>>$LOGFILE
+VALIDATION $? "install of mysql"
 
-systemctl enable mysqlid &>>$LOGFILE 
-VALIDATE $? "Enableing MySQL server" 
+systemctl enable mysqld &>>$LOGFILE
+VALIDATION $? "enable mysql"
 
-systemctl start mysqlid &>>$LOGFILE 
-VALIDATE $? "starting MySQL Server" 
+systemctl start mysqld &>>$LOGFILE
+VALIDATION $? "start mysql"
 
-mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
+
+mysql_secure_installation --set-root-pass ${my_root_passowrd} &>>$LOGFILE
 VALIDATION $? "setup the root password"
