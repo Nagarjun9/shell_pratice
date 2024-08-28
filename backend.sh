@@ -48,14 +48,15 @@ else
 fi 
 
 mkdir -p /app &>>$LOGFILE
-VALIDATE $? "Creating app directory" 
-
+VALIDATION $? "directory created"
+sudo su - ec2-user 
 curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOGFILE
-VALIDATE $? "Downloading backend code" 
+VALIDATE $? "downloaded backendcode"
 
 cd /app
+rm -rf *
 unzip /tmp/backend.zip &>>$LOGFILE
-VALIDATE $? "unzip the application code"
+VALIDATE $? "unzip the code in app folder"
 
 npm install &>>$LOGFILE 
 VALIDATE $? "Installing nodejs dependencies" 
