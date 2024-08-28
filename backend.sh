@@ -48,8 +48,7 @@ else
 fi 
 
 mkdir -p /app &>>$LOGFILE
-VALIDATION $? "directory created"
-sudo su - ec2-user 
+VALIDATE $? "directory created"
 curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOGFILE
 VALIDATE $? "downloaded backendcode"
 
