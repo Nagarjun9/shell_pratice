@@ -55,13 +55,13 @@ VALIDATE $? "Downloading backend code"
 
 cd /app
 unzip /tmp/backend.zip &>>$LOGFILE
-VALIDATION $? "unzip the application code"
+VALIDATE $? "unzip the application code"
 
 npm install &>>$LOGFILE 
 VALIDATE $? "Installing nodejs dependencies" 
 
 #check your repo and path
-cp /home/ec2-user/expense-shell/backend.service /etc/systemd/system/backend.service &>>$LOGFILE
+cp /home/ec2-user/shell_pratice/backend.service /etc/systemd/system/backend.service &>>$LOGFILE
 VALIDATE $? "Copied backend service" 
 
 systemctl daemon-reload &>>$LOGFILE 
